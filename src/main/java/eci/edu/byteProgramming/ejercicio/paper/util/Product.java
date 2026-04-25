@@ -1,21 +1,20 @@
 package eci.edu.byteProgramming.ejercicio.paper.util;
 
 public class Product {
-    private String productId;
+    private String id;
     private String name;
     private double price;
     private String category;
-    
-    public Product(String productId, String name, double price, String category) {
-        this.productId = productId;
+
+    public Product(String id, String name, double price, String category) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
     }
-    
-    // Getters
-    public String getProductId() { return productId; }
-    public String getName() { return name; }
-    public double getPrice() { return price; }
+
+    public String getId()       { return id; }
+    public String getName()     { return name; }
+    public double getPrice()    { return price; }
     public String getCategory() { return category; }
 }

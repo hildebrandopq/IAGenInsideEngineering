@@ -24,3 +24,24 @@ videoclub/
 │   └── GeneradorRecibo.java
 └── VideoClubApp.java          ← main
 
+Tengo un sistema de pagos en Java con las clases ECIPayment, PaymentMethod (abstracta), PaymentObserver (interfaz), CreditCardFactory, PaypalFactory, CryptoFactory, Notification, Inventory, Facturation, PaymentEventObserver y PaymentStatus. El sistema usa patrones Factory y Observer. Analiza el código, identifica errores de compilación, clases faltantes, mal uso de patrones y propón correcciones. El error principal es que PaymentFactory no existe como interfaz y las factories extienden PaymentMethod en lugar de implementar una interfaz factory.
+❌ Errores Identificados
+Error 1 — PaymentFactory no existe
+ECIPayment.processPayment() recibe un parámetro de tipo PaymentFactory pero esa interfaz nunca fue creada. Es el error principal de compilación.
+Error 2 — Las factories extienden PaymentMethod en lugar de implementar PaymentFactory
+CreditCardFactory, PaypalFactory y CryptoFactory extienden PaymentMethod (clase abstracta de dominio). Esto viola el patrón Factory: una factory no ES un método de pago, sino que CREA métodos de pago.
+Error 3 — PaymentEventObserver importa javax.management.Notification
+javaimport javax.management.Notification; // ❌ incorrecto — es la clase del JDK, no la del proyecto
+Debería usar la clase Notification del paquete propio, que no necesita import porque está en el mismo paquete.
+Error 4 — ValidatePayment no existe como interfaz separada
+PaymentMethod declara implements ValidatePayment pero esa interfaz no fue pegada. Debe existir.
+Error 5 — Bug en constructor de PaymentMethod
+javapublic PaymentMethod(double amount, String transactionID, String description) {
+this.customerID = customerID; // ❌ asigna el parámetro "transactionID" con nombre incorrecto
+El parámetro se llama transactionID pero se intenta asignar customerID que no existe en el scope.
+Error 6 — CryptoFactory aparece duplicado en el código
+El archivo CryptoFactory.java está pegado dos veces. No afecta compilación si solo hay un archivo, pero indica descuido.
+Error 7 — Product no fue compartido
+Inventory usa Product pero no se ve su implementación. Debe existir.
+
+![img.png](img.png)
