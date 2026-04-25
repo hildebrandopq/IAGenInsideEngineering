@@ -1,7 +1,7 @@
 Tengo un ejercicio de diseño de software en Java. Necesito un sistema de videoclub llamado 'Videoclub Don Mario' que cumpla lo siguiente: registrar películas físicas o digitales con disponibilidad, permitir al cliente seleccionar películas por número, calcular el precio total según membresía (BASICA = precio normal, PREMIUM = 20% descuento), y mostrar un recibo detallado. Las películas son: [Fisica] Interestellar $8000 disponible, [Fisica] El Padrino $7000 no disponible, [Digital] Inception $5000 disponible, [Digital] Matrix $6000 disponible. Aplica patrones de diseño apropiados (Strategy, Template Method o similares), principios SOLID, polimorfismo y encapsulamiento. Genera el código Java organizado en paquetes: model, service, enums.
 
 RESPUESTADE LA IA 
-
+tiempo 10 minutos 
 Patrones de Diseño Identificados
 1. Strategy (patrón principal)
    El cálculo del precio varía según la membresía del cliente. En lugar de usar if/else para cada tipo, el enum TipoMembresia encapsula la estrategia de descuento correspondiente. Cada valor del enum lleva su propio porcentaje, y CalculadorPrecio lo consume sin saber qué tipo es.
@@ -43,5 +43,5 @@ Error 6 — CryptoFactory aparece duplicado en el código
 El archivo CryptoFactory.java está pegado dos veces. No afecta compilación si solo hay un archivo, pero indica descuido.
 Error 7 — Product no fue compartido
 Inventory usa Product pero no se ve su implementación. Debe existir.
-
+tiempó 13 minutos 
 ![img.png](img.png)
